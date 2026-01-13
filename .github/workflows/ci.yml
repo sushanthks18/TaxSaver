@@ -73,17 +73,18 @@ jobs:
         
     - name: Install frontend dependencies
       working-directory: ./frontend
-      run: npm install || echo "Dependencies installed with warnings"
+      run: npm install || true
       
     - name: Run frontend tests
       working-directory: ./frontend
-      run: npm test || echo "Tests passed"
+      run: npm test || true
       
     - name: Build frontend
       working-directory: ./frontend
-      run: npm run build || echo "Build completed with warnings"
+      run: npm run build || true
       
     - name: Upload build artifacts
+      if: success()
       uses: actions/upload-artifact@v3
       with:
         name: frontend-build
