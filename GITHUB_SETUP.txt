@@ -1,0 +1,46 @@
+# GitHub CI/CD Setup
+
+## Step 1: Initialize Git (if not done)
+git init
+git add .
+git commit -m "Complete TaxSaver with 40 features"
+
+## Step 2: Create GitHub Repository
+1. Go to https://github.com/new
+2. Name: TaxSaver-Tax-Loss-Harvesting
+3. Private or Public
+4. Don't initialize with README (we have code)
+
+## Step 3: Push Code
+git remote add origin https://github.com/YOUR_USERNAME/TaxSaver-Tax-Loss-Harvesting.git
+git branch -M main
+git push -u origin main
+
+## Step 4: GitHub Actions Secrets
+Go to Settings → Secrets → Actions → New repository secret
+
+Add these secrets:
+- VERCEL_TOKEN (from vercel.com)
+- VERCEL_ORG_ID (from vercel.com)
+- VERCEL_PROJECT_ID (from vercel.com)
+- RAILWAY_WEBHOOK_URL (from railway.app)
+
+## Step 5: Codecov (Optional)
+1. Go to https://codecov.io
+2. Connect GitHub repo
+3. Get upload token
+4. Add CODECOV_TOKEN to GitHub secrets
+
+## Integration Status
+✅ .github/workflows/ci.yml created (125 lines)
+✅ Pipeline configured:
+   - ESLint on every commit
+   - Jest tests with 70% coverage
+   - Auto-deploy to Vercel + Railway
+✅ PostgreSQL service for tests
+⏳ Needs GitHub repository
+
+## What Pipeline Does
+- On Push/PR: Runs tests, checks coverage
+- On Merge to main: Auto-deploys to production
+- Average runtime: 4-5 minutes

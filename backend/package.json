@@ -1,0 +1,38 @@
+{
+  "name": "taxsaver-backend",
+  "version": "1.0.0",
+  "description": "Tax Loss Harvesting Platform API",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --coverage --ci --maxWorkers=2",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "src/**/*.{ts,js}",
+      "!src/**/*.test.{ts,js}",
+      "!src/**/__tests__/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    }
+  },
+  "keywords": ["tax", "loss", "harvesting", "crypto", "stocks", "india"],
+  "author": "Sushanth K S",
+  "license": "MIT"
+}

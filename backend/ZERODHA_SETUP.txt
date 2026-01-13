@@ -1,0 +1,29 @@
+# Zerodha Integration Setup
+
+## Step 1: Register Kite Connect App
+1. Go to https://developers.kite.trade/
+2. Login with Zerodha account
+3. Create new app
+4. Get API Key and API Secret
+
+## Step 2: Add to .env
+KITE_API_KEY=your-api-key-here
+KITE_API_SECRET=your-api-secret-here
+
+## Step 3: Test Integration
+curl http://localhost:5001/api/zerodha/login
+
+## Step 4: User Flow
+1. User clicks "Connect Zerodha" in frontend
+2. Frontend calls GET /api/zerodha/login
+3. User redirected to Kite login
+4. User authorizes app
+5. Kite redirects back with request_token
+6. Frontend calls GET /api/zerodha/callback?request_token=xxx
+7. Backend stores encrypted access token
+8. Daily cron syncs holdings automatically
+
+## Status
+✅ Routes integrated
+✅ Service code ready
+⏳ Needs API keys from Kite Connect
