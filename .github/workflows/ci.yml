@@ -89,32 +89,12 @@ jobs:
     - name: Mark as success
       run: echo "Frontend checks completed"
 
-  # Deploy to Production
+  # Deploy to Production (disabled - manual deployment)
   deploy:
     needs: [backend-test, frontend-test]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: false  # Disabled until secrets are configured
     
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Deploy Frontend to Vercel
-      uses: amondnet/vercel-action@v25
-      with:
-        vercel-token: ${{ secrets.VERCEL_TOKEN }}
-        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-        vercel-args: '--prod'
-        working-directory: ./frontend
-        
-    - name: Deploy Backend to Railway
-      run: |
-        echo "Backend deployed to Railway via webhook"
-        curl -X POST ${{ secrets.RAILWAY_WEBHOOK_URL }}
-        
-    - name: Notify deployment success
-      run: |
-        echo "✅ Deployment successful!"
-        echo "Frontend: https://taxsaver.vercel.app"
-        echo "Backend: https://taxsaver-api.railway.app"
+    - name: Skip deployment
+      run: echo "Deployment skipped - configure VERCEL_TOKEN and RAILWAY_WEBHOOK_URL secrets to enable"
